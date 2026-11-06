@@ -3,27 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مناحل الفاخر ترحب بك</title>
+    <title>مناحل الفاخر - عرض عسل الحمضيات الحر 100%</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background-color: #f4f7f6; margin: 0; padding: 50px; display: flex; justify-content: center; }
-        .form-container { background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
-        h2 { text-align: center; color: #333; }
+        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        
+        /* تنسيق الشعار */
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        .logo-container img { max-width: 120px; height: auto; }
+
+        /* تنسيق صورة المنتج */
+        .product-image { text-align: center; margin: 20px 0; }
+        .product-image img { width: 100%; max-width: 400px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        .badge { background: #d97706; color: #fff; padding: 6px 15px; border-radius: 20px; font-size: 14px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        h1 { color: #b45309; text-align: center; font-size: 24px; margin-bottom: 10px; line-height: 1.4; }
+        .price-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0; }
+        .price-box h2 { color: #92400e; margin: 0; font-size: 26px; }
+        
+        .features { margin: 20px 0; padding-right: 20px; }
+        .features li { margin-bottom: 10px; font-size: 16px; color: #444; }
+        
         .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #555; font-weight: bold; }
-        input[type="text"], input[type="tel"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { background-color: #28a745; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; }
-        button:hover { background-color: #218838; }
-        #message { margin-top: 15px; text-align: center; font-weight: bold; }
+        label { display: block; margin-bottom: 8px; color: #444; font-weight: bold; }
+        input[type="text"], input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        
+        button { background-color: #16a34a; color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        button:hover { background-color: #15803d; }
+        
+        #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 16px; }
+        .footer-note { text-align: center; font-size: 13px; color: #666; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
     </style>
 </head>
 <body>
 
-<div class="form-container">
-    <h2>سجل بياناتك معنا</h2>
+<div class="container">
+    <!-- شعار المؤسسة -->
+    <div class="logo-container">
+        <img src="01.svg" alt="شعار مناحل الفاخر">
+    </div>
+
+    <div style="text-align: center;">
+        <span class="badge">🔥 عرض حصري لفترة محدودة</span>
+    </div>
+    
+    <h1>عسل الحمضيات الحر 100% (طبيعي وخالٍ تماماً من التغذية)</h1>
+    <p style="text-align: center; color: #555;">نقي، صافٍ، وخالٍ من مخلفات الأدوية والسكر. جودة عالية لصحتك وصحة عائلتك من مناحل الفاخر.</p>
+
+    <!-- صورة المنتج الاحترافية -->
+    <div class="product-image">
+        <img src="WhatsApp Image 2026-10-18 at 13.08.12.jpeg" alt="عسل الحمضيات مناحل الفاخر">
+    </div>
+
+    <div class="price-box">
+        <p style="margin: 0 0 5px 0; font-size: 14px; color: #666;">عرض العبوة الاقتصادية:</p>
+        <h2>3 كيلوغرام بـ 1 مليون فقط (10,000 دج)</h2>
+        <p style="margin: 5px 0 0 0; color: #16a34a; font-weight: bold; font-size: 14px;">🚚 الدفع عند الاستلام والتوصيل متوفر</p>
+    </div>
+
+    <ul class="features">
+        <li>✨ عسل حمضيات أصلي ومضمون 100% (بيو).</li>
+        <li>✨ خالٍ تماماً من السكر والتغذية الصناعية والأدوية.</li>
+        <li>✨ ممتاز للمناعة، الطاقة، والعلاج الطبيعي.</li>
+    </ul>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+
+    <h3 style="text-align: center; color: #333;">أدخل معلوماتك للاستفادة من العرض:</h3>
+    
     <form id="landingForm">
         <div class="form-group">
             <label for="fullName">الاسم واللقب:</label>
-            <input type="text" id="fullName" name="fullName" required>
+            <input type="text" id="fullName" name="fullName" required placeholder="ادخل اسمك الكامل">
         </div>
         
         <div class="form-group">
@@ -33,12 +84,17 @@
         
         <div class="form-group">
             <label for="phone">رقم الهاتف:</label>
-            <input type="tel" id="phone" name="phone" required>
+            <input type="tel" id="phone" name="phone" required placeholder="مثلاً: 0655xxxxxxxx">
         </div>
         
-        <button type="submit" id="submitBtn">إرسال البيانات</button>
+        <button type="submit" id="submitBtn">تأكيد طلب العرض الآن</button>
     </form>
+    
     <div id="message"></div>
+
+    <div class="footer-note">
+        جميع الحقوق محفوظة © مناحل الفاخر 2026
+    </div>
 </div>
 
 <script>
@@ -49,7 +105,7 @@
     form.addEventListener('submit', e => {
         e.preventDefault();
         document.getElementById('submitBtn').disabled = true;
-        document.getElementById('submitBtn').innerText = 'جاري الإرسال...';
+        document.getElementById('submitBtn').innerText = 'جاري إرسال طلبك...';
 
         const requestData = {
             fullName: document.getElementById('fullName').value,
@@ -59,22 +115,22 @@
 
         fetch(scriptURL, {
             method: 'POST',
-            mode: 'no-cors', // لتجنب مشاكل الصلاحيات في المتصفح
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestData)
         })
         .then(() => {
             messageDiv.style.color = 'green';
-            messageDiv.innerText = 'تم إرسال بياناتك بنجاح!';
+            messageDiv.innerText = '🎉 تم تسجيل طلبك بنجاح! سنتصل بك قريباً لتأكيد التوصيل.';
             form.reset();
             document.getElementById('submitBtn').disabled = false;
-            document.getElementById('submitBtn').innerText = 'إرسال البيانات';
+            document.getElementById('submitBtn').innerText = 'تأكيد طلب العرض الآن';
         })
         .catch(error => {
             messageDiv.style.color = 'red';
             messageDiv.innerText = 'حدث خطأ، يرجى المحاولة مرة أخرى.';
             document.getElementById('submitBtn').disabled = false;
-            document.getElementById('submitBtn').innerText = 'إرسال البيانات';
+            document.getElementById('submitBtn').innerText = 'تأكيد طلب العرض الآن';
         });
     });
 </script>
