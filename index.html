@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مناحل الفاخر - عرض عسل الحمضيات الحر 100%</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; color: #333; }
+        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; padding-bottom: 80px; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         
         /* تنسيق الشعار */
@@ -30,13 +30,7 @@
         input[type="text"], input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
         input[type="text"]:focus, input[type="tel"]:focus { border-color: #d97706; outline: none; box-shadow: 0 0 5px rgba(217, 119, 6, 0.3); }
         
-        /* زر متحرك ونابض لجذب الانتباه */
-        @keyframes pulse-animation {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(22, 163, 74, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
-        }
-
+        /* زر الإرسال الأساسي داخل الفورم */
         button { 
             background-color: #16a34a; 
             color: white; 
@@ -47,10 +41,37 @@
             font-size: 18px; 
             font-weight: bold; 
             cursor: pointer; 
-            transition: background 0.3s, transform 0.2s;
-            animation: pulse-animation 2s infinite;
+            transition: background 0.3s;
         }
-        button:hover { background-color: #15803d; transform: translateY(-2px); }
+        button:hover { background-color: #15803d; }
+
+        /* زر عائم متحرك أسفل الشاشة يرافق التصفح */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 1000;
+        }
+        .floating-btn {
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 560px;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+            transition: background 0.3s;
+        }
+        .floating-btn:hover { background-color: #15803d; }
         
         #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 16px; }
         .footer-note { text-align: center; font-size: 13px; color: #666; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
@@ -78,7 +99,7 @@
 
     <div class="price-box">
         <p style="margin: 0 0 5px 0; font-size: 14px; color: #666;">عرض العبوة الاقتصادية (3 كيلوجرام):</p>
-        <h2>بـ 1 مليون فقط (10,000 دج)</h2>
+        <h2>10,000 دج (مليون سنتيم)</h2>
         <p style="margin: 5px 0 0 0; color: #16a34a; font-weight: bold; font-size: 14px;">🚚 الدفع عند الاستلام والتوصيل متوفر</p>
     </div>
 
@@ -88,7 +109,7 @@
         <li>✨ ممتاز للمناعة، الطاقة، والعلاج الطبيعي.</li>
     </ul>
 
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;" id="form-section">
 
     <h3 style="text-align: center; color: #333;">أدخل معلوماتك للاستفادة من العرض:</h3>
     
@@ -118,7 +139,17 @@
     </div>
 </div>
 
+<!-- شريط وزر عائم أسفل الشاشة للتحويل المباشر للفورم عند السكرول -->
+<div class="floating-cta">
+    <button class="floating-btn" onclick="scrollToForm()">اطلب العرض الآن (10,000 دج) 🛒</button>
+</div>
+
 <script>
+    function scrollToForm() {
+        const formSection = document.getElementById('form-section');
+        formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
     const scriptURL = 'YOUR_WEB_APP_URL'; // ضع رابط جوجل آابس سكريبت هنا بين علامتي التنصيص
     const form = document.getElementById('landingForm');
     const messageDiv = document.getElementById('message');
