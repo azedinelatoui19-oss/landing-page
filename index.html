@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مناحل الفاخر - عرض عسل الحمضيات الحر 100%</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; padding-bottom: 90px; color: #333; }
+        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; padding-bottom: 110px; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         
         /* تنسيق الشعار */
@@ -27,10 +27,10 @@
         
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; color: #444; font-weight: bold; }
-        input[type="text"], input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
-        input[type="text"]:focus, input[type="tel"]:focus { border-color: #d97706; outline: none; box-shadow: 0 0 5px rgba(217, 119, 6, 0.3); }
+        input[type="text"], input[type="tel"], select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; background-color: #fff; transition: border-color 0.3s; }
+        input[type="text"]:focus, input[type="tel"]:focus, select:focus { border-color: #d97706; outline: none; box-shadow: 0 0 5px rgba(217, 119, 6, 0.3); }
         
-        /* تأثير النبض العام للأزرار المحددة */
+        /* تأثير النبض للأزرار */
         @keyframes pulse-animation {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
             70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(22, 163, 74, 0); }
@@ -43,7 +43,6 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
         }
 
-        /* زر الإرسال الأخير داخل الفورم (نابض بالأخضر) */
         .submit-btn { 
             background-color: #16a34a; 
             color: white; 
@@ -59,7 +58,6 @@
         }
         .submit-btn:hover { background-color: #15803d; }
 
-        /* الزر البرتقالي البارز في الأعلى (نابض بالبرتقالي) */
         .top-action-btn {
             background-color: #d97706;
             color: white;
@@ -76,13 +74,13 @@
         }
         .top-action-btn:hover { background-color: #b45309; }
 
-        /* شريط وزر عائم أسفل الشاشة يحتوي على العبارة والعداد معاً */
+        /* الزر العائم المطور بسطرين (عبارة + عداد متحرك) */
         .floating-cta {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             padding: 10px 20px;
             box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
             text-align: center;
@@ -92,21 +90,22 @@
             background-color: #16a34a;
             color: white;
             border: none;
-            padding: 12px 15px;
+            padding: 10px 15px;
             width: 100%;
             max-width: 560px;
             border-radius: 8px;
-            font-size: 15px;
-            font-weight: bold;
             cursor: pointer;
             animation: pulse-animation 2s infinite;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 4px;
             margin: 0 auto;
         }
         .floating-btn:hover { background-color: #15803d; }
+        .floating-title { font-size: 16px; font-weight: bold; }
+        .floating-timer { font-size: 13px; background: rgba(0, 0, 0, 0.2); padding: 2px 10px; border-radius: 4px; font-family: monospace; }
         
         #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 16px; }
         .footer-note { text-align: center; font-size: 13px; color: #666; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
@@ -138,7 +137,7 @@
         <p style="margin: 5px 0 0 0; color: #16a34a; font-weight: bold; font-size: 14px;">🚚 الدفع عند الاستلام والتوصيل متوفر</p>
     </div>
 
-    <!-- الزر البرتقالي النابض في الأعلى للتحويل السريع للفورم -->
+    <!-- الزر البرتقالي النابض في الأعلى -->
     <button class="top-action-btn" onclick="scrollToForm()">اطلب العرض الآن واستفد من الخصم ⚡</button>
 
     <ul class="features">
@@ -157,9 +156,32 @@
             <input type="text" id="fullName" name="fullName" required placeholder="ادخل اسمك الكامل">
         </div>
         
+        <!-- اختيار الولاية -->
         <div class="form-group">
-            <label for="addressInfo">العنوان، الولاية والبلدية:</label>
-            <input type="text" id="addressInfo" name="addressInfo" required placeholder="مثلاً: حي الموقف، ولاية الجلفة، بلدية حد الصحاري">
+            <label for="wilaya">الولاية:</label>
+            <select id="wilaya" name="wilaya" required onchange="updateCommunes()">
+                <option value="">-- اختر الولاية --</option>
+                <option value="الجزائر">1. الجزائر</option>
+                <option value="وهران">31. وهران</option>
+                <option value="قسنطينة">25. قسنطينة</option>
+                <option value="البليدة">09. البليدة</option>
+                <option value="الجلفة">17. الجلفة</option>
+                <option value="سطيف">19. سطيف</option>
+                <option value="باتنة">05. باتنة</option>
+                <option value="عنابة">23. عنابة</option>
+                <option value="تيزي وزو">15. تيزي وزو</option>
+                <option value="بجاية">06. بجاية</option>
+                <option value="تلمسان">13. تلمسان</option>
+                <!-- يمكن إضافة باقي الولايات هنا بكل سهولة -->
+            </select>
+        </div>
+
+        <!-- اختيار البلدية (تتحدث تلقائياً حسب الولاية) -->
+        <div class="form-group">
+            <label for="commune">البلدية:</label>
+            <select id="commune" name="commune" required>
+                <option value="">-- اختر الولاية أولاً --</option>
+            </select>
         </div>
         
         <div class="form-group">
@@ -178,22 +200,61 @@
     </div>
 </div>
 
-<!-- الشريط العائم أسفل الشاشة يحتوي على زر نابض مع العبارة والعداد التنازلي -->
+<!-- الشريط العائم أسفل الشاشة (العبارة الكبيرة في السطر الأول والعداد المتحرك في السطر الثاني) -->
 <div class="floating-cta">
     <button class="floating-btn" onclick="scrollToForm()">
-        <span>اشترِ قبل نفاذ الكمية 🔥</span>
-        <span id="time-display" style="background: rgba(0,0,0,0.2); padding: 3px 8px; border-radius: 4px; font-family: monospace;">06ج : 23س : 59د</span>
+        <span class="floating-title">🛒 اشترِ الآن قبل نفاذ الكمية (10,000 دج)</span>
+        <span class="floating-timer" id="time-display">06 أيام : 23 ساعة : 59 دقيقة : 59 ثانية</span>
     </button>
 </div>
 
 <script>
+    // قاعدة بيانات مصغرة للبلديات حسب الولاية (قابلة للتوسعة بسهولة)
+    const communesData = {
+        "الجزائر": ["الجزائر الوسطى", "سيدي أمحمد", "باب الوادي", "الحراش", "بئر مراد رايس", "الرغاية", "دالي إبراهيم", "الشراقة"],
+        "وهران": ["وهران", "أسنو", "الباهية", "بير الجير", "السانية", "الارزيو", "بطيوة"],
+        "قسنطينة": ["قسنطينة", "الخروب", "حامة بوزيان", "عين عبيد", "ديدوش مراد", "إبن باديس"],
+        "البليدة": ["البليدة", "موزاية", "بوفاريك", "العريشة", "الأربعاء", "الشفة", "حمام الصالحين"],
+        "الجلفة": ["الجلفة", "حد الصحاري", "مسعد", "حاسي بحبح", "عين الإبل", "الدار الشيوخ"],
+        "سطيف": ["سطيف", "العلمة", "عين أرنات", "بوقاعة", "العامرة", "جميلة", "عين الحجر"],
+        "باتنة": ["باتنة", "بريكة", "تيمقاد", "أراس", "مروانة", "الشمرة"],
+        "عنابة": ["عنابة", "البوني", "الحجار", "سيدي عمار", "برحال"],
+        "تيزي وزو": ["تيزي وزو", "عزابة", "ذعرة", "واقور", "أزفون", "معاتقة"],
+        "بجاية": ["بجاية", "أقبو", "سيدي عيش", "العقيد لطفي", "برج ميرة", "تشمورة"],
+        "تلمسان": ["تلمسان", "منصورة", "السبع شيوخ", "مغنية", "الغزوات", "ندرومة"]
+    };
+
+    function updateCommunes() {
+        const wilayaSelect = document.getElementById("wilaya");
+        const communeSelect = document.getElementById("commune");
+        const selectedWilaya = wilayaSelect.value;
+
+        // تفريغ البلديات القديمة
+        communeSelect.innerHTML = '<option value="">-- اختر البلدية --</option>';
+
+        if (selectedWilaya && communesData[selectedWilaya]) {
+            communesData[selectedWilaya].forEach(commune => {
+                let option = document.createElement("option");
+                option.value = commune;
+                option.textContent = commune;
+                communeSelect.appendChild(option);
+            });
+        } else {
+            // إذا كانت الولاية غير موجودة في القائمة المختصرة، نسمح بالكتابة أو نضيف خيار عام
+            let option = document.createElement("option");
+            option.value = "أخرى";
+            option.textContent = "بلدية أخرى (مقر الولاية)";
+            communeSelect.appendChild(option);
+        }
+    }
+
     // وظيفة الانتقال السلس لنموذج الطلب
     function scrollToForm() {
         const formSection = document.getElementById('form-section');
         formSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // عداد تنازلي ديناميكي
+    // عداد تنازلي متحرك ودقيق بالثواني
     let timeRemaining = 7 * 24 * 60 * 60; // 7 أيام بالثواني
     const timerDisplay = document.getElementById('time-display');
 
@@ -204,7 +265,7 @@
             let hours = Math.floor((timeRemaining % (3600 * 24)) / 3600);
             let minutes = Math.floor((timeRemaining % 3600) / 60);
             let seconds = timeRemaining % 60;
-            timerDisplay.innerText = `${days}ج : ${hours}س : ${minutes}د : ${seconds}ث`;
+            timerDisplay.innerText = `${days} أيام : ${hours} ساعة : ${minutes} دقيقة : ${seconds} ثانية`;
         }
     }, 1000);
 
@@ -212,3 +273,40 @@
     const form = document.getElementById('landingForm');
     const messageDiv = document.getElementById('message');
 
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'جاري إرسال طلبك...';
+
+        const requestData = {
+            fullName: document.getElementById('fullName').value,
+            wilaya: document.getElementById('wilaya').value,
+            commune: document.getElementById('commune').value,
+            phone: document.getElementById('phone').value
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData)
+        })
+        .then(() => {
+            messageDiv.style.color = 'green';
+            messageDiv.innerText = '🎉 تم تسجيل طلبك بنجاح! سنتصل بك قريباً لتأكيد التوصيل.';
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'تأكيد طلب العرض الآن 🛒';
+        })
+        .catch(error => {
+            messageDiv.style.color = 'red';
+            messageDiv.innerText = 'حدث خطأ، يرجى المحاولة مرة أخرى.';
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'تأكيد طلب العرض الآن 🛒';
+        });
+    });
+</script>
+
+</body>
+</html>
