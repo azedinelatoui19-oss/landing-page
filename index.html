@@ -22,9 +22,6 @@
         .price-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0; }
         .price-box h2 { color: #92400e; margin: 0; font-size: 26px; }
         
-        /* تنسيق العداد التنازلي في الأعلى */
-        .timer-box { background: #fee2e2; color: #991b1b; padding: 10px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 15px; border: 1px solid #f87171; }
-
         .features { margin: 20px 0; padding-right: 20px; }
         .features li { margin-bottom: 10px; font-size: 16px; color: #444; }
         
@@ -33,8 +30,21 @@
         input[type="text"], input[type="tel"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
         input[type="text"]:focus, input[type="tel"]:focus { border-color: #d97706; outline: none; box-shadow: 0 0 5px rgba(217, 119, 6, 0.3); }
         
-        /* زر الإرسال الأساسي داخل الفورم */
-        button { 
+        /* تأثير النبض العام للأزرار المحددة */
+        @keyframes pulse-animation {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(22, 163, 74, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        }
+
+        @keyframes pulse-orange {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(217, 119, 6, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+        }
+
+        /* زر الإرسال الأخير داخل الفورم (نابض بالأخضر) */
+        .submit-btn { 
             background-color: #16a34a; 
             color: white; 
             border: none; 
@@ -44,18 +54,29 @@
             font-size: 18px; 
             font-weight: bold; 
             cursor: pointer; 
+            animation: pulse-animation 2s infinite;
             transition: background 0.3s;
         }
-        button:hover { background-color: #15803d; }
+        .submit-btn:hover { background-color: #15803d; }
 
-        /* تأثير النبض والحركة للزر العائم */
-        @keyframes pulse-animation {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(22, 163, 74, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        /* الزر البرتقالي البارز في الأعلى (نابض بالبرتقالي) */
+        .top-action-btn {
+            background-color: #d97706;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px 0;
+            animation: pulse-orange 2s infinite;
+            transition: background 0.3s;
         }
+        .top-action-btn:hover { background-color: #b45309; }
 
-        /* شريط وزر عائم متحرك أسفل الشاشة */
+        /* شريط وزر عائم أسفل الشاشة يحتوي على العبارة والعداد معاً */
         .floating-cta {
             position: fixed;
             bottom: 0;
@@ -71,15 +92,19 @@
             background-color: #16a34a;
             color: white;
             border: none;
-            padding: 14px 20px;
+            padding: 12px 15px;
             width: 100%;
             max-width: 560px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             animation: pulse-animation 2s infinite;
-            transition: background 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto;
         }
         .floating-btn:hover { background-color: #15803d; }
         
@@ -102,11 +127,6 @@
     <h1>عسل الحمضيات الحر 100% (طبيعي وخالٍ تماماً من التغذية)</h1>
     <p style="text-align: center; color: #555;">نقي، صافٍ، وخالٍ من مخلفات الأدوية والسكر. جودة عالية لصحتك وصحة عائلتك من مناحل الفاخر.</p>
 
-    <!-- عداد تنازلي تحفيزي -->
-    <div class="timer-box" id="countdown">
-        ⏳ ينتهي عرض الخصم والكمية المحدودة خلال: <span id="time-display">06 أيام : 23 ساعة : 59 دقيقة</span>
-    </div>
-
     <!-- صورة المنتج الاحترافية -->
     <div class="product-image">
         <img src="WhatsApp Image 2026-10-18 at 13.08.12.jpeg" alt="عسل الحمضيات مناحل الفاخر">
@@ -117,6 +137,9 @@
         <h2>10,000 دج (مليون سنتيم)</h2>
         <p style="margin: 5px 0 0 0; color: #16a34a; font-weight: bold; font-size: 14px;">🚚 الدفع عند الاستلام والتوصيل متوفر</p>
     </div>
+
+    <!-- الزر البرتقالي النابض في الأعلى للتحويل السريع للفورم -->
+    <button class="top-action-btn" onclick="scrollToForm()">اطلب العرض الآن واستفد من الخصم ⚡</button>
 
     <ul class="features">
         <li>✨ عسل حمضيات أصلي ومضمون 100% (بيو).</li>
@@ -144,7 +167,8 @@
             <input type="tel" id="phone" name="phone" required placeholder="مثلاً: 0655xxxxxxxx">
         </div>
         
-        <button type="submit" id="submitBtn">تأكيد طلب العرض الآن 🛒</button>
+        <!-- زر الشراء الأخير النابض -->
+        <button type="submit" id="submitBtn" class="submit-btn">تأكيد طلب العرض الآن 🛒</button>
     </form>
     
     <div id="message"></div>
@@ -154,9 +178,12 @@
     </div>
 </div>
 
-<!-- شريط وزر عائم متحرك ونابض أسفل الشاشة -->
+<!-- الشريط العائم أسفل الشاشة يحتوي على زر نابض مع العبارة والعداد التنازلي -->
 <div class="floating-cta">
-    <button class="floating-btn" onclick="scrollToForm()">🔥 اشترِ الآن قبل نفاذ الكمية (10,000 دج) 🛒</button>
+    <button class="floating-btn" onclick="scrollToForm()">
+        <span>اشترِ قبل نفاذ الكمية 🔥</span>
+        <span id="time-display" style="background: rgba(0,0,0,0.2); padding: 3px 8px; border-radius: 4px; font-family: monospace;">06ج : 23س : 59د</span>
+    </button>
 </div>
 
 <script>
@@ -166,7 +193,7 @@
         formSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // محاكاة عداد تنازلي لمدة أسبوع
+    // عداد تنازلي ديناميكي
     let timeRemaining = 7 * 24 * 60 * 60; // 7 أيام بالثواني
     const timerDisplay = document.getElementById('time-display');
 
@@ -177,7 +204,7 @@
             let hours = Math.floor((timeRemaining % (3600 * 24)) / 3600);
             let minutes = Math.floor((timeRemaining % 3600) / 60);
             let seconds = timeRemaining % 60;
-            timerDisplay.innerText = `${days} أيام : ${hours} ساعة : ${minutes} دقيقة : ${seconds} ثانية`;
+            timerDisplay.innerText = `${days}ج : ${hours}س : ${minutes}د : ${seconds}ث`;
         }
     }, 1000);
 
@@ -185,39 +212,3 @@
     const form = document.getElementById('landingForm');
     const messageDiv = document.getElementById('message');
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'جاري إرسال طلبك...';
-
-        const requestData = {
-            fullName: document.getElementById('fullName').value,
-            addressInfo: document.getElementById('addressInfo').value,
-            phone: document.getElementById('phone').value
-        };
-
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestData)
-        })
-        .then(() => {
-            messageDiv.style.color = 'green';
-            messageDiv.innerText = '🎉 تم تسجيل طلبك بنجاح! سنتصل بك قريباً لتأكيد التوصيل.';
-            form.reset();
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'تأكيد طلب العرض الآن 🛒';
-        })
-        .catch(error => {
-            messageDiv.style.color = 'red';
-            messageDiv.innerText = 'حدث خطأ، يرجى المحاولة مرة أخرى.';
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'تأكيد طلب العرض الآن 🛒';
-        });
-    });
-</script>
-
-</body>
-</html>
