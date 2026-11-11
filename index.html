@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مناحل الفاخر - عرض عسل الحمضيات الحر 100%</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; padding-bottom: 80px; color: #333; }
+        body { font-family: Tahoma, sans-serif; background-color: #fcfbfa; margin: 0; padding: 20px; padding-bottom: 90px; color: #333; }
         .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         
         /* تنسيق الشعار */
@@ -22,6 +22,9 @@
         .price-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0; }
         .price-box h2 { color: #92400e; margin: 0; font-size: 26px; }
         
+        /* تنسيق العداد التنازلي في الأعلى */
+        .timer-box { background: #fee2e2; color: #991b1b; padding: 10px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 20px; font-size: 15px; border: 1px solid #f87171; }
+
         .features { margin: 20px 0; padding-right: 20px; }
         .features li { margin-bottom: 10px; font-size: 16px; color: #444; }
         
@@ -45,7 +48,14 @@
         }
         button:hover { background-color: #15803d; }
 
-        /* زر عائم متحرك أسفل الشاشة يرافق التصفح */
+        /* تأثير النبض والحركة للزر العائم */
+        @keyframes pulse-animation {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(22, 163, 74, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        }
+
+        /* شريط وزر عائم متحرك أسفل الشاشة */
         .floating-cta {
             position: fixed;
             bottom: 0;
@@ -53,7 +63,7 @@
             right: 0;
             background: rgba(255, 255, 255, 0.95);
             padding: 10px 20px;
-            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
             text-align: center;
             z-index: 1000;
         }
@@ -61,14 +71,14 @@
             background-color: #16a34a;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             width: 100%;
             max-width: 560px;
-            border-radius: 6px;
-            font-size: 17px;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+            animation: pulse-animation 2s infinite;
             transition: background 0.3s;
         }
         .floating-btn:hover { background-color: #15803d; }
@@ -91,6 +101,11 @@
     
     <h1>عسل الحمضيات الحر 100% (طبيعي وخالٍ تماماً من التغذية)</h1>
     <p style="text-align: center; color: #555;">نقي، صافٍ، وخالٍ من مخلفات الأدوية والسكر. جودة عالية لصحتك وصحة عائلتك من مناحل الفاخر.</p>
+
+    <!-- عداد تنازلي تحفيزي -->
+    <div class="timer-box" id="countdown">
+        ⏳ ينتهي عرض الخصم والكمية المحدودة خلال: <span id="time-display">06 أيام : 23 ساعة : 59 دقيقة</span>
+    </div>
 
     <!-- صورة المنتج الاحترافية -->
     <div class="product-image">
@@ -139,18 +154,34 @@
     </div>
 </div>
 
-<!-- شريط وزر عائم أسفل الشاشة للتحويل المباشر للفورم عند السكرول -->
+<!-- شريط وزر عائم متحرك ونابض أسفل الشاشة -->
 <div class="floating-cta">
-    <button class="floating-btn" onclick="scrollToForm()">اطلب العرض الآن (10,000 دج) 🛒</button>
+    <button class="floating-btn" onclick="scrollToForm()">🔥 اشترِ الآن قبل نفاذ الكمية (10,000 دج) 🛒</button>
 </div>
 
 <script>
+    // وظيفة الانتقال السلس لنموذج الطلب
     function scrollToForm() {
         const formSection = document.getElementById('form-section');
         formSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    const scriptURL = 'YOUR_WEB_APP_URL'; // ضع رابط جوجل آابس سكريبت هنا بين علامتي التنصيص
+    // محاكاة عداد تنازلي لمدة أسبوع
+    let timeRemaining = 7 * 24 * 60 * 60; // 7 أيام بالثواني
+    const timerDisplay = document.getElementById('time-display');
+
+    setInterval(() => {
+        if (timeRemaining > 0) {
+            timeRemaining--;
+            let days = Math.floor(timeRemaining / (3600 * 24));
+            let hours = Math.floor((timeRemaining % (3600 * 24)) / 3600);
+            let minutes = Math.floor((timeRemaining % 3600) / 60);
+            let seconds = timeRemaining % 60;
+            timerDisplay.innerText = `${days} أيام : ${hours} ساعة : ${minutes} دقيقة : ${seconds} ثانية`;
+        }
+    }, 1000);
+
+    const scriptURL = 'YOUR_WEB_APP_URL'; // ضع رابط جوجل آابس سكريبت هنا
     const form = document.getElementById('landingForm');
     const messageDiv = document.getElementById('message');
 
